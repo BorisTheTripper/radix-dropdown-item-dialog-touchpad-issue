@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from './components/ui/button';
 import {
   Dialog,
@@ -17,6 +18,8 @@ import {
 } from './components/ui/dropdown-menu';
 
 function App() {
+  const [reportReason, setReportReason] = useState<string | null>(null);
+
   return (
     <div className="h-full grid place-items-center">
       <DropdownMenu>
@@ -26,51 +29,52 @@ function App() {
         <DropdownMenuContent>
           <DropdownMenuItem>...</DropdownMenuItem>
           <DropdownMenuItem>...</DropdownMenuItem>
-          <Dialog>
-            <DialogTrigger asChild>
-              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                open dialog
-              </DropdownMenuItem>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogTitle>dialog title</DialogTitle>
-              <DialogDescription>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-                cupiditate, aut expedita dolores sunt doloribus, id facere odit
-                a dignissimos non qui autem, delectus repellat odio voluptatum
-                eos quas incidunt placeat dolorum minima officia. Tenetur
-                deserunt accusantium sunt nostrum accusamus? Totam velit minima
-                laboriosam consequatur quam nisi! Veniam, sunt sint!
-              </DialogDescription>
-            </DialogContent>
-          </Dialog>
 
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>trigger submenu</DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <DropdownMenuItem>...</DropdownMenuItem>
-              <DropdownMenuItem>...</DropdownMenuItem>
-              <Dialog>
+          <Dialog>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>report post</DropdownMenuSubTrigger>
+
+              <DropdownMenuSubContent>
                 <DialogTrigger asChild>
-                  <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                    open dialog
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      setReportReason('spam');
+                    }}
+                  >
+                    Spam
                   </DropdownMenuItem>
                 </DialogTrigger>
+                <DialogTrigger asChild>
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      setReportReason('toxicity');
+                    }}
+                  >
+                    Toxicity
+                  </DropdownMenuItem>
+                </DialogTrigger>
+                <DialogTrigger asChild>
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      setReportReason(null);
+                    }}
+                  >
+                    Other
+                  </DropdownMenuItem>
+                </DialogTrigger>
+
                 <DialogContent>
-                  <DialogTitle>dialog title</DialogTitle>
+                  <DialogTitle>Report post</DialogTitle>
                   <DialogDescription>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Beatae cupiditate, aut expedita dolores sunt doloribus, id
-                    facere odit a dignissimos non qui autem, delectus repellat
-                    odio voluptatum eos quas incidunt placeat dolorum minima
-                    officia. Tenetur deserunt accusantium sunt nostrum
-                    accusamus? Totam velit minima laboriosam consequatur quam
-                    nisi! Veniam, sunt sint!
+                    Cited reason: <strong>{reportReason}</strong>
                   </DialogDescription>
                 </DialogContent>
-              </Dialog>
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+          </Dialog>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
