@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "public": true,
+    "src/assets": true,
+    "tsconfig*.json": true,
+    "vite.config.ts": true,
+    "tailwind.config.js": true,
+    "postcss.config.js": true,
+    "eslint.config.js": true,
+    "pnpm-lock.yaml": true,
+    "components.json": true,
+    "*/vite-env.d.ts": true,
+    "*/index.css": true
+  }
+}
